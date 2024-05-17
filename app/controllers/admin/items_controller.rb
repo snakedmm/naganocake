@@ -5,14 +5,18 @@ class Admin::ItemsController < ApplicationController
   end
   
   def create
-    item = Item.new(item_params)
-    if item.save
-      redirect_to admin_items_path
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to admin_item_path(@item)
     else
+      flash.now[:alert] = "保存に失敗しました"
       render :new
     end
   end
   
+  def show
+    @item = Item.find(params[:id])
+  end
   
   def index
     @items = Item.all
