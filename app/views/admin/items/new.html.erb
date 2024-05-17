@@ -67,7 +67,7 @@
   </div>
   <div class="form-group">
     <%= f.label :introduction,'商品説明' %>
-    <%= f.text_field :introduction %>
+    <%= f.text_area :introduction %>
   </div>
 
   <div class="form-group">
@@ -76,13 +76,13 @@
 　</div>
 　<div class="form-group">
 　　<%= f.label :price ,'税抜価格' %>
-　　<%= f.text_field :price %>円
+　　<%= f.number_field :price %>円
 　</div>
 　<div class="form-group">
 　　<%= f.label :status ,'販売ステータス' %>
-　　<%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale' %>
+　　<%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale', id: 'status-on-sale' %>
 　　<%= f.label :status, '販売中', for: 'status-on-sale' %>
-　　<%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale' %>
+　　<%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale', id: 'status-off-sale' %>
 　　<%= f.label :status, '販売停止中', for: 'status-off-sale' %>
 
 　</div>
