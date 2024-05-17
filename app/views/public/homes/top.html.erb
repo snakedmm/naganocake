@@ -1,2 +1,31 @@
-<h1>会員topページ</h1>
-<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+<table>
+  <th scope="col">ジャンル検索</th>
+  <td>ケーキ</td>
+  <td>焼き菓子</td>
+  <td>プリン</td>
+  <td>キャンディ</td>
+</table>
+
+<div class="card bg-dark text-white" style="width: 300px; height: auto;">
+  <!-- <img src="./fulldict.png" class="card-img" alt="icon image"> -->
+  <div class="card-img-overlay d-flex">
+    <div class="my-auto">
+      <p class="card-text">
+        ようこそ、ながのCAKEへ！
+        このサイトは、ケーキ販売のECサイトになります。
+        会員でない方も商品の閲覧はできますが、
+        購入には会員登録が必要になります。
+      </p>
+    </div>
+  </div>
+</div>
+
+<table>
+  <% @items.each do |item| %>
+  <div class="product">
+    <%= image_tag(item.image_url) %>
+    <p><%= item.name %></p>
+    <p>¥<%= item.price %></p>
+  </div>
+  <% end %>
+</table>
