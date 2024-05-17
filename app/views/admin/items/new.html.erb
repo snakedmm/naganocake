@@ -61,4 +61,26 @@
         <% end %> 
     </div>
   </div>
-</div>
+  <div class="form-group">
+    <%= f.label :商品名 %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :商品説明 %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ジャンル %>
+    <%= f.text_field :genre %>
+　</div>
+　<div class="form-group">
+　　<%= f.label :税抜価格 %>
+　　<%= f.text_field :price %>
+　</div>
+　<div class="form-group">
+　　<%= f.submit '新規' %>
+　</div>
+<% end %>
+
+
