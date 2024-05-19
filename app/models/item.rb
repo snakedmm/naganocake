@@ -11,4 +11,8 @@ class Item < ApplicationRecord
   
   enum status: { on_sale: 0, off_sale: 1 }
   
+  def add_tax_price
+    (self.price * 1.10).round
+  end
+  
 end
