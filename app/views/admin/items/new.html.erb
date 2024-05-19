@@ -78,14 +78,11 @@
 　　<%= f.label :price ,'税抜価格' %>
 　　<%= f.number_field :price %>円
 　</div>
-　<div class="form-group">
-　　<%= f.label :status ,'販売ステータス' %>
-　　<%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale', id: 'status-on-sale' %>
-　　<%= f.label :status, '販売中', for: 'status-on-sale' %>
-　　<%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale', id: 'status-off-sale' %>
-　　<%= f.label :status, '販売停止中', for: 'status-off-sale' %>
 
-　</div>
+　<%= f.label :is_active ,'販売ステータス' %>
+　　<%= f.radio_button :is_active, "true" %>販売中
+　　<%= f.radio_button :is_active, "false" %>販売停止
+
 
 　<div class="form-group">
 　　<%= f.submit '新規' %>
