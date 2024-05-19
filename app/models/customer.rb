@@ -17,8 +17,18 @@ class Customer < ApplicationRecord
  validates :post_code, presence: true
  validates :address, presence: true
  validates :phone_number, presence: true
+<<<<<<< HEAD
  validates :password, presence: true
  validates :password_confirmation, presence: true
+=======
+ validates :password, presence: true, on: :create # ユーザー新規登録時のみバリデーションを実行 
+ validates :password_confirmation, presence: true, on: :create # ユーザー新規登録時のみバリデーションを実行 
+ 
+ # is_activeがtrueならfalseを返すようにしている
+  def active_for_authentication?
+    super && (is_active == true)
+  end
+>>>>>>> f44439a (会員情報編集、退会機能)
  
 
 

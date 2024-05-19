@@ -59,8 +59,13 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+<<<<<<< HEAD
   
   
+=======
+
+
+>>>>>>> f44439a (会員情報編集、退会機能)
   before_action :configure_sign_up_params, if: :devise_controller?
 
 
