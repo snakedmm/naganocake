@@ -17,8 +17,8 @@ class Customer < ApplicationRecord
  validates :post_code, presence: true
  validates :address, presence: true
  validates :phone_number, presence: true
- validates :password, presence: true, on: :create # ユーザー新規登録時のみバリデーションを実行 
- validates :password_confirmation, presence: true, on: :create # ユーザー新規登録時のみバリデーションを実行 
+ validates :password, presence: true, length: { minimum: 6 }, on: :create # ユーザー新規登録時のみバリデーションを実行 
+ validates :password_confirmation, presence: true, length: { minimum: 6 }, on: :create # ユーザー新規登録時のみバリデーションを実行 
  
  # is_activeがtrueならfalseを返すようにしている
   def active_for_authentication?
