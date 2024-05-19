@@ -11,8 +11,6 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     new_customer_session_path
   end
-<<<<<<< HEAD
-=======
   
   def reject_customer
     @customer = Customer.find_by(email: params[:customer][:email])
@@ -27,5 +25,4 @@ class Public::SessionsController < Devise::SessionsController
       flash[:notice] = "該当するユーザーが見つかりません"
     end
   end
->>>>>>> f44439a (会員情報編集、退会機能)
 end
