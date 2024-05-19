@@ -1,1 +1,29 @@
 <h1>詳細</h1>
+  
+  <div>
+  <%= image_tag @item.image, size: "200x200" %>
+  </div>
+  
+  <div>
+  <p>商品名</p>
+  <%= @item.name %>
+  </div>
+  <div>
+  <p>商品説明</p>
+  <%= @item.introduction %>
+  </div>
+  
+  <div>
+  <p>ジャンル</p>
+  <%= @item.genre.name %>
+  </div>
+  <div>
+  <p>税込価格<br>(税込価格)</p>
+  </div>
+  <div>
+  <p>販売ステータス</p>
+  <%= @item.status %>
+  </div>
+  
+  <%= link_to "編集する",edit_admin_item_path(@item.id), class:"btn btn-success"%>
+  
