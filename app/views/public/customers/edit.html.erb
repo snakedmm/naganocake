@@ -34,11 +34,9 @@
     <%= f.text_field :phone_number, autofocus: true, placeholder: "0000000000", autocomplete: "phone_number" %>
   </div>
   
-  <%= f.submit '編集内容を保存' %>
+  <%= f.submit '編集内容を保存', class: "btn btn-success" %>
   
-  <%= link_to customers_confirm_path(@customer) do %>
-    <p>退会する</p>
-  <% end %>
+  <%= link_to "退会する", customers_confirm_path(@customer), class:"btn btn-danger" %>
 　
 
 <% end %>
