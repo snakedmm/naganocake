@@ -8,11 +8,7 @@ class Item < ApplicationRecord
   has_many :orders,through: :order_details , dependent: :destroy
   
   belongs_to :genre
-<<<<<<< HEAD
   
-=======
-
->>>>>>> 9bb7c41 (コンフリクト修正)
   def add_tax_price
     (self.price * 1.10).round
   end
