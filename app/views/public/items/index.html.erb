@@ -1,9 +1,19 @@
-<h1>商品一覧</h1><p>全<%= Item.active_items_count %>件</p>
+<div class="container">
+  <div class="row m-5">
+  <h2>商品一覧</h2><h3>(全<%= Item.active_items_count %>件)</h3>
+  </div>
+  <div class="row d-flex align-items-center justify-content-center m-5">
 
-<% @items.each do |item| %>
-<div>
-  <%= image_tag item.image, size: "200x150" %><br>
-  <%= item.name %><br>
-  ￥<%= item.price %>
+
+      <% @items.each do |item| %>
+      <div class="col-md-3">
+      <%= link_to item_path(item) do %>
+      <%= image_tag item.image, size: "200x150" %><br>
+      <% end %>
+      <%= item.name %><br>
+     ￥<%= item.add_tax_price.to_s(:delimited) %>
+     </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
