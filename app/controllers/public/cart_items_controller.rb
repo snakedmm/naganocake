@@ -5,6 +5,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def create
+    binding.pry
     cart_item = CartItem.new(cart_item_params)
     cart_item.customer_id = current_customer.id 
     cart_item.item_id = cart_item_params[:item_id]
@@ -24,11 +25,18 @@ class Public::CartItemsController < ApplicationController
     cart_item.update(cart_item_params)
     redirect_back(fallback_location: root_path)
   end
-
+  
   def destroy_all
     current_customer.cart_items.destroy_all
     redirect_to cart_items_path, notice: 'カートを空にしました'
   end
+  
+  def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to cart_items_path, notice: '商品を削除しました'
+  end
+
   
   private
   def cart_item_params
