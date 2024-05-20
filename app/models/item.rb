@@ -9,8 +9,13 @@ class Item < ApplicationRecord
   
   belongs_to :genre
   
-  def with_tax_price
-    (price * 1.1).floor
+  def add_tax_price
+    (self.price * 1.10).round
+  end
+  
+  def self.active_items_count
+    where(is_active: true).count
+
   end
   
 end
