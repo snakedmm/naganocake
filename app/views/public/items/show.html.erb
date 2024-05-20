@@ -3,14 +3,14 @@
   　<div class="col-md-5">
     <%= image_tag @item.image, size: "300x250" %>
     </div>
-    <div class="col-md-5">
-    <h2><%= @item.name %></h2>
-    <p><%= @item.introduction %></p>
-    <br><br>
-    <div>
-    <h2>￥<%= @item.add_tax_price.to_s(:delimited) %></h2><p>(税込)</p>
+      <div class="col-md-5">
+      <h2 class="fw-bol"><%= @item.name %></h2>
+      <p><%= @item.introduction %></p>
+      <br><br>
+      <div>
+      <h3>￥<%= @item.add_tax_price.to_s(:delimited) %></h3><p>(税込)</p>
     </div>
-    </div>
+  </div>
 </div>
 
 

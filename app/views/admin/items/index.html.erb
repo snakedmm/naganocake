@@ -1,12 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-
-     <h2>商品一覧</h2>
-
-
-        <table class='table table-hover'>
-          <thead>
+      <h3 class="col-lg-2 my-4" , style="background-color:#d7d7d7">商品一覧</h3>
+       <%= link_to "新規登録へ" ,new_admin_item_path ,class:"btn btn-success mb-3" %>
+        <table class='table table-hover '>
+          <thead style="background-color:#eaffea;">
             <tr>
               <th>商品ID</th>
               <th>商品名</th>
@@ -24,7 +22,7 @@
                 <%= item.name %>
                 <% end %>
                 </td>
-              <td><%= item.price.to_s(:delimited) %></td>
+              <td><%= item.price.to_s(:delimited) %> 円</td>
               <td><%= item.genre.name %></td>
               <td>
                 <% if item.is_active %>
