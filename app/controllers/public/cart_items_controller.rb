@@ -27,7 +27,7 @@ class Public::CartItemsController < ApplicationController
     cart_item.update(cart_item_params)
     redirect_back(fallback_location: root_path)
   end
-  
+
   def destroy_all
     current_customer.cart_items.destroy_all
     redirect_to cart_items_path, notice: 'カートを空にしました'
