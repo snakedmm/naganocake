@@ -14,4 +14,8 @@ class Item < ApplicationRecord
     (self.price * 1.10).round
   end
   
+  def self.active_items_count
+    where(is_active: true).count
+  end
+  
 end
