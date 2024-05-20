@@ -29,9 +29,15 @@
               <th scope="row" style="width: 50%">販売ステータス</th>
               <td>
                 <% if @item.is_active %>
+<<<<<<< HEAD
                 <strong  class="text-success">販売中</strong>
                 <% else %>
                 <strong class="text-muted">販売停止</strong>
+=======
+                <p  class="text-success"><strong>販売中</strong></p>
+                <% else %>
+                <p class="text-muted"><strong>販売停止</strong></p>
+>>>>>>> 98f4e62 (elseに変更と会員画面の税込表示に変更)
                 <% end %>
               </td>
             </tr>
