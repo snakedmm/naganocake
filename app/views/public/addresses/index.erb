@@ -2,7 +2,7 @@
   <div class="row">
     <h2 class="my-4 px-4", style="background-color: #FFDBC9;">配送先登録/一覧</h2>
   </div>
-    
+
     <%= form_with model: @address do |f| %>
       <div class="row col-form-label-lg">
         <div class="col-1"></div>
@@ -13,7 +13,7 @@
           <%= f.text_field :post_code, autofocus: true, placeholder: "0000000", autocomplete: "post_code" %>
         </div>
       </div>
-      
+
       <div class="row col-form-label-lg">
         <div class="col-1"></div>
         <div class="col-3">
@@ -23,7 +23,7 @@
           <%= f.text_field :address, autofocus: true, placeholder: "住所を入力してください", autocomplete: "address", size: "40" %>
         </div>
       </div>
-      
+
       <div class="row col-form-label-lg mb-5">
         <div class="col-1"></div>
         <div class="col-3">
@@ -37,13 +37,13 @@
       </div>
       </div>
     <% end %>
-    
+
     <div class="row col-9 pb-5", style="font-size: 20px;">
       <table class="table table-bordered", style="border-width: 3px;">
         <thead style="background-color: #FFDBC9;">
           <tr>
             <th class="col-1">郵便番号</th>
-            <th class="col-3">住所</th> 
+            <th class="col-3">住所</th>
             <th class="col-2">宛名</th>
             <th colspan="1" class="col-3"></th>
           </tr>
@@ -51,8 +51,8 @@
         <tbody>
           <% @addresses.each do |address| %>
            <tr>
-            <td><%= address.post_code %></td> 
-            <td><%= address.address %></td> 
+            <td><%= address.post_code %></td>
+            <td><%= address.address %></td>
             <td><%= address.name %></td>
             <td>
               <%= link_to "編集する",edit_address_path(address), class: "btn btn-success" %>
