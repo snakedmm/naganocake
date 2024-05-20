@@ -1,27 +1,21 @@
-<h2>新規会員登録</h2>
+<h1>顧客編集画面</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+<%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+
+  <div class="field">
+    <%= f.label :会員ID %>
+    <%= @customer.id %>
   
   <div class="field">
     <%= f.label :名前 %>
-    <%= f.label :"(姓)" %>
     <%= f.text_field :last_name, autofocus: true, placeholder: "令和", autocomplete: "last_name" %>
-    <%= f.label :"(名)" %>
     <%= f.text_field :first_name, autofocus: true, placeholder: "道子", autocomplete: "first_name" %>
   </div>
     
   <div class="field">
     <%= f.label :フリガナ %>
-    <%= f.label :"(セイ)" %>
     <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ", autocomplete: "last_name_kana" %>
-    <%= f.label :"(メイ)" %>
     <%= f.text_field :first_name_kana, autofocus: true, placeholder: "ミチコ", autocomplete: "first_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email" %>
   </div>
   
   <div class="field">
@@ -38,29 +32,25 @@
     <%= f.label :"電話番号(ハイフンなし)" %>
     <%= f.text_field :phone_number, autofocus: true, placeholder: "0000000000", autocomplete: "phone_number" %>
   </div>
-
+  
   <div class="field">
-    <%= f.label :"パスワード(6文字以上)" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email" %>
   </div>
-
-  <div class="field">
-    <%= f.label :"パスワード(確認用)" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  
+  <div>
+  <%= f.label :is_active, '会員ステータス' %>
+  <div>
+    <div>
+      <%= f.radio_button :is_active, true, checked: @customer.is_active == true %>
+      <%= f.label :is_active, '有効' %>
+    </div>
+    <div>
+      <%= f.radio_button :is_active, false, checked: @customer.is_active == false %>
+      <%= f.label :is_active, '退会済み' %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
+</div>
+	
+	<%= f.submit '編集内容を保存' %>
 <% end %>
-
-<p>既にログイン済みの方</p>
-<p>
-  <%= link_to "sign_in" do %>
-    こちら
-  <% end %>
-    からログインしてください。
-</p>
