@@ -8,5 +8,8 @@ class Address < ApplicationRecord
   def address_display
   '〒' + postal_code + ' ' + address + ' ' + name
   end
+<<<<<<< HEAD
 
+=======
+>>>>>>> a955b40 (カート機能、注文機能作成中)
 end

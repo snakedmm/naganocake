@@ -1,5 +1,9 @@
 <h3>ショッピングカート</h3>
+<<<<<<< HEAD
 <%= button_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: { confirm: '本当にカートを空にしますか？' }, class: 'btn btn-danger' %>
+=======
+<%= link_to 'カートを空にする', {controller: 'cart_items', action: 'destroy_all'}, method: :delete, data: { confirm: '本当にカートを空にしますか？' } %>
+>>>>>>> a955b40 (カート機能、注文機能作成中)
 <table class="table table-bordered">
       <tr class="table-active">
          <th>商品名</th>
@@ -8,6 +12,7 @@
          <th>小計</th>
          <th><br></th>
       </tr>
+<<<<<<< HEAD
       <% @sum = 0 %>
       <% @cart_item.each do |cart_item| %>
          <tr>
@@ -18,12 +23,23 @@
             <td>
                <%= cart_item.item.with_tax_price %>
             </td>
+=======
+       <% @sum = 0 %>
+       <% @cart_item.each do |cart_item| %>
+         <tr>
+            <td>
+               <%= attachment_image_tag cart_item.item#, :image, :fill, 300, 300, format: 'jpeg' %>
+               <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.with_tax_price %></td>
+>>>>>>> a955b40 (カート機能、注文機能作成中)
             <td>
                <%= form_with model:cart_item, url:cart_item_path(cart_item.id) , local:true do |f| %>
                   <%= f.select :amount, *[1..10] %>
                   <%= f.submit "変更" , class: "btn btn-success" %>
                <% end %>
             </td>
+<<<<<<< HEAD
             <td>
                <%= cart_item.subtotal %>
             </td>
@@ -38,3 +54,15 @@
 合計金額 <%= @sum %>
 
 <%= link_to "情報入力に進む" , new_order_path , class: "btn btn-success" %>
+=======
+            <td><%= cart_item.subtotal %></td>
+            <td><%= link_to "削除", destroy_cart_item_path(cart_item.id) ,  method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%></td>
+         </tr>
+         <% @sum += cart_item.subtotal %>
+   </table>
+<% end %>
+<%= link_to "買い物を続ける" , root_path , class: "btn btn-primary" %>
+合計金額 <%= @sum %>
+
+<%= link_to "情報入力に進む" , orders_new_path , class: "btn btn-success" %>
+>>>>>>> a955b40 (カート機能、注文機能作成中)

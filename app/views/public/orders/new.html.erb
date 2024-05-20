@@ -1,9 +1,14 @@
 <%= form_with model: @order, url: '/orders/confirm', local: true do |f| %>
+<<<<<<< HEAD
   <h3>支払方法</h3>
+=======
+<h3>支払方法</h3>
+>>>>>>> a955b40 (カート機能、注文機能作成中)
   <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
   <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
   
   <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+<<<<<<< HEAD
   <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
 
   <h3>お届け先</h3>
@@ -14,6 +19,18 @@
   <%= f.radio_button :address_number, 2 %>
   <%= f.label :address_number_2, "登録先の住所" %>
   <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address) %>
+=======
+  <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+
+<h3>お届け先</h3>
+  <%= f.radio_button :address_number, 1 %> 
+  <%= f.label :address_number_1, "ご自身の住所" %>
+  <%= current_customer.customer_address %>
+
+  <%= f.radio_button :address_number, 2 %>
+  <%= f.label :address_number_2, "登録先の住所" %>
+  <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address %>
+>>>>>>> a955b40 (カート機能、注文機能作成中)
 
   <%= f.radio_button :address_number, 3 %>
   <%= f.label :address_number_3, "新しいお届け先" %>

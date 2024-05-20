@@ -1,22 +1,24 @@
 class Public::CartItemsController < ApplicationController
-  
   def index
-    @cart_item = CartItem.all
+    @cart_items = current_customer.cart_items
   end
   
   def create
-    binding.pry
-    cart_item = CartItem.new(cart_item_params)
-    cart_item.customer_id = current_customer.id 
-    cart_item.item_id = cart_item_params[:item_id]
-    if CartItem.find_by(item_id: params[:cart_item][:item_id]).present?
-      cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
-      cart_item.amount += params[:cart_item][:amount].to_i
-      cart_item.update(amount: cart_item.amount)
+    cart_item_params_with_amount = cart_item_params.merge(amount: params[:cart_item][:quantity])
+
+    @cart_item = CartItem.new(cart_item_params_with_amount)
+    @cart_item.customer_id = current_customer.id
+
+    if existing_cart_item = CartItem.find_by(item_id: @cart_item.item_id, customer_id: current_customer.id)
+      existing_cart_item.amount += @cart_item.amount.to_i
+      existing_cart_item.save
       redirect_to cart_items_path
     else
-      cart_item.save
-      redirect_to cart_items_path
+      if @cart_item.save
+        redirect_to cart_items_path
+      else
+        render :new
+      end
     end
   end
   
@@ -37,10 +39,8 @@ class Public::CartItemsController < ApplicationController
     redirect_to cart_items_path, notice: '商品を削除しました'
   end
 
-  
   private
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
   end
-  
 end
