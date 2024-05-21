@@ -4,7 +4,7 @@
       <%= render 'public/genre_searches/genre' %>
     </div>
     <div class="col-md-10">
-      <h3 class="col-lg-4 my-4" , style="background-color:#d7d7d7">ジャンル検索結果(全<%= @items.active_items_count %>件)</h3>
+      <h3 class="col-lg-4 my-4" , style="background-color:#d7d7d7"><%= @genre.name %>一覧(全<%= @items.active_items_count %>件)</h3>
       <div class="row row-cols-4">
         <% @items.each do |item| %>
         <div class="col">
