@@ -25,6 +25,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  post 'orders/confirm' => 'orders#confirm'
  get 'orders/finish' => 'orders#finish'
  resources :addresses , only: [:index, :edit, :create, :update, :destroy]
+ get '/genre/search' =>'genre_searches#search'
  end
  
  
