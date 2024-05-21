@@ -1,61 +1,75 @@
 class Public::OrdersController < ApplicationController
-
   def new
     @order = Order.new
+    @addresses = current_customer.addresses
   end
-  
+
   def create
     cart_items = current_customer.cart_items.all
-      @order = current_customer.orders.new(order_params)
-      if @order.save
-        cart_items.each do |cart|
-          order_item = OrderItem.new
-          order_item.item_id = cart.item_id
-          order_item.order_id = @order.id
-          order_item.order_quantity = cart.quantity
-          order_item.order_price = cart.item.price
-          order_item.save
-        end
-        redirect_to orders_finish_path
-        cart_items.destroy_all
-      else
-        @order = Order.new(order_params)
-        render :new
+    @order = current_customer.orders.new(order_params)
+    @order.shipping_cost = 800
+    if @order.save
+      cart_items.each do |cart|
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart.item_id
+        order_detail.order_id = @order.id
+        order_detail.amount = cart.amount  
+        order_detail.price = cart.item.price
+        order_detail.save
       end
-    
+      #cart_items.destroy_all
+      redirect_to orders_finish_path
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
   end
-  
+
   def confirm
     @order = Order.new(order_params)
     if params[:order][:address_number] == "1"
-      @order.name = current_customer.name # @order の各カラムに必要なものを入れます
-      @order.address = current_customer.customer_address
+      @order.name = current_customer.full_name
+      @order.address = current_customer.address
+      @order.post_code = current_customer.post_code
     elsif params[:order][:address_number] == "2"
-      if Address.exists?(name: params[:order][:registered])
-        @order.name = Address.find(params[:order][:registered]).name
-        @order.address = Address.find(params[:order][:registered]).address
-      else
-        render :new
-      end
+      selected_address = Address.find(params[:order][:registered])
+      @order.name = selected_address.name
+      @order.address = selected_address.address
+      @order.post_code = selected_address.post_code
     elsif params[:order][:address_number] == "3"
-      address_new = current_customer.addresses.new(address_params)
-      if address_new.save # 確定前(確認画面)で save してしまうことになりますが、私の知識の限界でした
-      else
-        render :new
-      end
+      @order.name = params[:order][:name]
+      @order.address = params[:order][:address]
+      @order.post_code = params[:order][:post_code]
     else
-      redirect_to 遷移したいページ # ありえないですが、万が一当てはまらないデータが渡ってきた場合の処理です
+      redirect_to new_order_path
+      return
     end
     @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @total = CartItem.calculate_total_price(@cart_items)
+    render :confirm
   end
   
-  private
-  def order_params
-    params.require(:order).permit(:name, :address, :total_price)
+  def finish
+    render 'finish'
+    @order = Order.new(
+      name: params[:name],
+      address: params[:address],
+      post_code: params[:post_code],
+      payment_method: params[:payment_method],
+      total_payment: params[:total_payment],
+      shipping_cost: params[:shipping_cost],
+      status: params[:status]
+    )
   end
 
-  def address_params
-    params.require(:order).permit(:name, :address)
+  def index
+  end
+  
+  def show
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:name, :address, :post_code, :total_payment, :payment_method, :shipping_cost)
   end
 end
