@@ -8,6 +8,10 @@
   </div>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  
     <div class="row mt-4 col-form-label-lg">
       <div class="col-1"></div>
       <div class="px-0 col-3">
