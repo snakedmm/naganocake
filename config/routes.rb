@@ -26,6 +26,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  get 'orders/finish' => 'orders#finish'
  resources :addresses , only: [:index, :edit, :create, :update, :destroy]
  get "customers" => redirect("/customers/sign_up")
+ get '/genre/search' =>'genre_searches#search'
  end
  
  
