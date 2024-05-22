@@ -20,7 +20,7 @@
               <th scope="row" style="width: 50%"></th>
               <td><%= @order.name %></td>
             </tr>
-            
+
             <tr>
               <th scope="row" style="width: 50%">支払方法</th>
               <td><%= @order.payment_method_i18n %></td>
@@ -41,18 +41,34 @@
             <th>制作ステータス</th>
             <th>更新ボタン後で</th>
           </thead>
+          <% @sum = 0 %>
           <% @order_details.each do |order_detail| %>
           <tbody>
             <td><%= order_detail.item.name %></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          <% end %>  
+            <td><%= order_detail.price.to_s(:delimited) %></td>
+            <td><%= order_detail.amount.to_s(:delimited) %></td>
+            <td><%= order_detail.subtotal.to_s(:delimited) %></td>
+            <td>制作ステータス</td>
+            <td>更新ボタン後で</td>
+            <% @sum += order_detail.subtotal %>
+          <% end %>
           </tbody>
-        
-          
+        </table>
+        <table>
+          <tbody>
+            <tr>
+              <th>商品合計</th>
+              <td><%= @sum.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <th>送料</th>
+              <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <th>請求金額</th>
+              <td><%= @order.total_payment.to_s(:delimited) %>円</td>
+            </tr>
+          </tbody>
         </table>
       </div>
   </div>
