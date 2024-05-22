@@ -5,7 +5,7 @@
       <h6>注文情報</h6>
       <table class="table table-bordered">
         <thead>
-          <tr>
+          <tr class="table-active">
             <th scope="col">注文日</th>
             <th scope="col">配送先</th>
             <th scope="col">支払方法</th>
@@ -17,7 +17,7 @@
             <td><%= @order.created_at.strftime("%Y-%m-%d") %></td>
             <td><%= @order.address %>, <%= @order.post_code %>, <%= @order.name %></td>
             <td><%= @order.payment_method_i18n %></td>
-            <td><%= @order.status %></td>
+            <td><%= @order.making_status %></td>
           </tr>
         </tbody>
       </table>
@@ -30,7 +30,7 @@
       <h6>請求情報</h6>
       <table class="table table-bordered">
         <thead>
-          <tr>
+          <tr class="table-active">
             <th scope="col">商品合計</th>
             <th scope="col">配送料</th>
             <th scope="col">ご請求金額</th>
@@ -57,7 +57,6 @@
   <% @order_details.each do |order_detail| %>
     <tr>
       <td>
-        <%= image_tag order_detail.item.image.variant(fill: "300x300", format: "jpeg") %>
         <%= order_detail.item.name %>
       </td>
       <td><%= order_detail.price %></td>

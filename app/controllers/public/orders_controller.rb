@@ -53,7 +53,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.find(params[:id])
+    @orders = current_customer.orders.all
   end
   
   def show
