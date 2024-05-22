@@ -26,9 +26,13 @@
               <td><%= @order.payment_method_i18n %></td>
             </tr>
              <tr>
+              <%= form_with model: @order, url: admin_order_path(@order),method: :patch, local: true do |f| %> 
               <th scope="row" style="width: 50%">注文ステータス</th>
-              <td>コード確認中
+              <td>
+                <%= f.select :status, Order.statuses_i18n.invert,{ class: "custom-select w-100"} %>
+                <%= f.submit "更新",class:"btn btn-success" %>
               </td>
+              <% end %>
             </tr>
           </tbody>
         </table>
@@ -39,7 +43,7 @@
             <th>数量</th>
             <th>小計</th>
             <th>制作ステータス</th>
-            <th>更新ボタン後で</th>
+            <th></th>
           </thead>
           <% @sum = 0 %>
           <% @order_details.each do |order_detail| %>
@@ -48,8 +52,10 @@
             <td><%= order_detail.price.to_s(:delimited) %></td>
             <td><%= order_detail.amount.to_s(:delimited) %></td>
             <td><%= order_detail.subtotal.to_s(:delimited) %></td>
-            <td>制作ステータス</td>
-            <td>更新ボタン後で</td>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail),method: :patch do |f| %> 
+            <td> <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, { class: "custom-select w-100"}%></td>
+            <td> <%= f.submit "更新",class:"btn btn-success" %></td>
+            <% end %>
             <% @sum += order_detail.subtotal %>
           <% end %>
           </tbody>
