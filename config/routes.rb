@@ -21,9 +21,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  patch 'customers/withdraw' => 'customers#withdraw'
  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
  resources :cart_items , only: [:index, :update, :destroy, :create]
- resources :orders , only: [:new, :create, :index, :show]
  post 'orders/confirm' => 'orders#confirm'
  get 'orders/finish' => 'orders#finish'
+ resources :orders , only: [:new, :create, :index, :show]
  resources :addresses , only: [:index, :edit, :create, :update, :destroy]
  get '/genre/search' =>'genre_searches#search'
  end

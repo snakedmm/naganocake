@@ -17,9 +17,7 @@
         <%= cart_item.item.add_tax_price %>
       </td>
       <td>
-        <!--<%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local: true do |f| %>-->
         <%= cart_item.amount %>
-        <!--<% end %>-->
       </td>
       <td>
         <%= cart_item.subtotal %>
@@ -61,5 +59,3 @@
   <%= f.hidden_field :status %>
   <%= f.submit "注文を確定する" , class: "btn btn-success" %>
 <% end %>
-<!-- < %= link_to "注文を確定する", orders_path, method: :post, class: "btn btn-success" %> -->
-<!-- < %= link_to "注文を確定する", orders_finish_path, class: "btn btn-success" %> -->
