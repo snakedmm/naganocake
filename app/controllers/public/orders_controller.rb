@@ -45,8 +45,8 @@ class Public::OrdersController < ApplicationController
       return
     end
     @cart_items = current_customer.cart_items.all
-    @total = CartItem.calculate_total_price(@cart_items)confirm
-    render :
+    @total = CartItem.calculate_total_price(@cart_items)
+    render :confirm
   end
   
   def finish
@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.where(order_id: @order.id)
+    
   end
 
   private
