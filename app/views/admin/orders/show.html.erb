@@ -6,7 +6,11 @@
           <tbody>
             <tr>
               <th scope="row" style="width: 50%">購入者</th>
-              <td><%= @order.customer.last_name %>&nbsp;<%= @order.customer.first_name %></td>
+              <td>
+                <%= link_to admin_customer_path(@order.customer) do %>
+                <%= @order.customer.last_name %>&nbsp;<%= @order.customer.first_name %>
+                <% end %>
+                </td>
             </tr>
             <tr>
               <th scope="row" style="width: 50%">注文日</th>
