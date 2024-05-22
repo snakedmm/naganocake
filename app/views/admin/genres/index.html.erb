@@ -1,5 +1,7 @@
 <div class="container">
-<h3 class="col-lg-4 my-4" , style="background-color:#d7d7d7">ジャンル一覧・追加</h3>
+  <div class="row">
+    <h2 class="my-4 px-4", style="background-color:#FFDBC9">ジャンル一覧・追加</h2>
+  </div>
   <div class="row">
     <div class="col  m-5">
     <%= form_with model: @genre, url:'/admin/genres',method: :post do |f| %>
@@ -12,7 +14,7 @@
     </div>
     <div class="col  m-5">
       <table class="table table-hover">
-       <thead>
+       <thead style="background-color:#FFDBC9;">
           <tr>
             <th>ジャンル</th>
             <th></th>

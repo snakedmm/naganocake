@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1 class="my-4 px-4", style="background-color: #eeeeee;">配送先編集</h1>
+    <h2 class="my-4 px-4", style="background-color: #FFDBC9;">配送先編集</h2>
   </div>
     
     <%= form_with model: @address, url: address_path(@address),method: :patch do |f| %>
@@ -25,7 +25,7 @@
         </div>
       </div>
       
-      <div class="row col-form-label-lg mb-5">
+      <div class="row col-form-label-lg pb-5">
         <div class="col-1"></div>
         <div class="col-3">
           <%= f.label :宛名 %>

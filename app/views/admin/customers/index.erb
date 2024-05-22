@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <h1 class="px-4 my-4", style="background-color: #eeeeee;">会員一覧</h1>
+    <h2 class="px-4 my-4", style="background-color: #FFDBC9;">会員一覧</h2>
   </div>
     
-    <div class="row"></div>
-      <table class="table my-5 table-hover", style="font-size: 17px;">
-        <thead style="background-color: #eeeeee;">
+    <div class="row">
+      <table class="table my-5 table-hover">
+        <thead style="background-color: #FFDBC9;">
           <tr>
             <th>会員ID</th>
             <th>氏名</th>
@@ -13,8 +13,8 @@
             <th>ステータス</th>
           </tr>
         </thead>
-        <% @customers.each do |customer| %>
         <tbody>
+          <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.id %></td>
             <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer) %></td>
@@ -27,8 +27,8 @@
               <% end %>
             </td>
           </tr>
+          <% end %>
         </tbody>
-        <% end %>
       </table>
     </div>
 </div>
