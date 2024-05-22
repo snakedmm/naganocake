@@ -1,0 +1,33 @@
+<div class="container">
+  <h3 class="col-lg-2 my-4" , style="background-color:#d7d7d7">注文履歴詳細</h3>
+  <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+        <table>
+          <tbody>
+            <tr>
+              <th scope="row" style="width: 50%">購入者</th>
+              <td><%= @order.name %></td>
+            </tr>
+            <tr>
+              <th scope="row" style="width: 50%">注文日</th>
+              <td><%= @order.created_at %></td>
+            </tr>
+            <tr>
+              <th scope="row" style="width: 50%">配送先</th>
+              <td><%= @order.address %></td>
+              <td><%= @order.name %></td>
+            </tr>
+            <tr>
+              <th scope="row" style="width: 50%">支払方法</th>
+              <td><%= @order.payment_method %>)</td>
+            </tr>
+             <tr>
+              <th scope="row" style="width: 50%">注文ステータス</th>
+              <td>コード確認中
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

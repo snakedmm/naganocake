@@ -9,15 +9,15 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.shipping_cost = 800
     if @order.save
-      cart_items.each do |cart|
-        order_detail = OrderDetail.new
-        order_detail.item_id = cart.item_id
-        order_detail.order_id = @order.id
-        order_detail.amount = cart.amount  
-        order_detail.price = cart.item.price
-        order_detail.save
+      cart_items.each do |cart_item|
+        @order_detail = OrderDetail.new
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.order_id = @order.id
+        @order_detail.amount = cart_item.amount  
+        @order_detail.price = cart_item.item.add_tax_price
+        @order_detail.save
       end
-      #cart_items.destroy_all
+      cart_items.destroy_all
       redirect_to orders_finish_path
     else
       @order = Order.new(order_params)
@@ -46,20 +46,19 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = current_customer.cart_items.all
     @total = CartItem.calculate_total_price(@cart_items)
-    render :confirm
+    render :finish
   end
   
   def finish
-    render 'finish'
-    @order = Order.new(
-      name: params[:name],
-      address: params[:address],
-      post_code: params[:post_code],
-      payment_method: params[:payment_method],
-      total_payment: params[:total_payment],
-      shipping_cost: params[:shipping_cost],
-      status: params[:status]
-    )
+    #render 'finish'
+    #@order = Order.new(
+      #name: params[:name],
+      #address: params[:address],
+      #post_code: params[:post_code],
+      #payment_method: params[:payment_method],
+      #total_payment: params[:total_payment],
+      #shipping_cost: params[:shipping_cost],
+      #status: params[:status]
   end
 
   def index
