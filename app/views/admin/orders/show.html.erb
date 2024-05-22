@@ -6,7 +6,7 @@
           <tbody>
             <tr>
               <th scope="row" style="width: 50%">購入者</th>
-              <td><%= @order.name %></td>
+              <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
             </tr>
             <tr>
               <th scope="row" style="width: 50%">注文日</th>

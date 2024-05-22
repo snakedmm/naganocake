@@ -46,7 +46,7 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = current_customer.cart_items.all
     @total = CartItem.calculate_total_price(@cart_items)
-    render :finish
+    render :confirm
   end
   
   def finish
@@ -59,6 +59,7 @@ class Public::OrdersController < ApplicationController
       #total_payment: params[:total_payment],
       #shipping_cost: params[:shipping_cost],
       #status: params[:status]
+    #)
   end
 
   def index
