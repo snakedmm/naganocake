@@ -17,9 +17,4 @@ class Item < ApplicationRecord
   def self.active_items_count
     where(is_active: true).count
   end
-  
-<<<<<<<<< saved version
-
-=========
 end
->>>>>>>>> local version
