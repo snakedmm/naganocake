@@ -23,6 +23,19 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      order:
+        status:
+          unprovable: "製作不可"
+          awaiting_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"
+      order_detail:
+        making_status:
+          unprovable: "製作不可"
+          awaiting_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"
   date:
     abbr_day_names:
     - 日
