@@ -4,7 +4,6 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-<<<<<<< HEAD
       status:
         waiting_for_payment: "入金待ち"
         payment_confirmation: "入金確認"
@@ -17,15 +16,6 @@ ja:
         awaiting_production: "制作待ち"
         in_production: "制作中"
         production_completed: "制作完了"
-=======
-    order_detail:
-      making_status:
-        unprovable: "製作不可"
-        awaiting_production: "製作待ち"
-        in_production: "製作中"
-        production_completed: "製作完了"
-
->>>>>>> f9c4ac2 (customer用製作ステータス完成)
   activerecord:
     errors:
       messages:
