@@ -1,3 +1,5 @@
+<%= notice %>
+<%= alert %>
 <div class="container">
   <h3 class="col-4 my-4" , style="background-color:#d7d7d7">注文履歴詳細</h3>
   <div class="row d-flex justify-content-center">
@@ -6,7 +8,11 @@
           <tbody>
             <tr>
               <th scope="row" style="width: 50%">購入者</th>
-              <td><%= @order.customer.last_name %>&nbsp;<%= @order.customer.first_name %></td>
+              <td>
+                <%= link_to admin_customer_path(@order.customer) do %>
+                <%= @order.customer.last_name %>&nbsp;<%= @order.customer.first_name %>
+                <% end %>
+                </td>
             </tr>
             <tr>
               <th scope="row" style="width: 50%">注文日</th>
@@ -20,15 +26,19 @@
               <th scope="row" style="width: 50%"></th>
               <td><%= @order.name %></td>
             </tr>
-            
+
             <tr>
               <th scope="row" style="width: 50%">支払方法</th>
               <td><%= @order.payment_method_i18n %></td>
             </tr>
              <tr>
+              <%= form_with model: @order, url: admin_order_path(@order),method: :patch, local: true do |f| %> 
               <th scope="row" style="width: 50%">注文ステータス</th>
-              <td>コード確認中
+              <td>
+                <%= f.select :status, Order.statuses_i18n.invert,{ class: "custom-select w-100"} %>
+                <%= f.submit "更新",class:"btn btn-success" %>
               </td>
+              <% end %>
             </tr>
           </tbody>
         </table>
@@ -39,17 +49,37 @@
             <th>数量</th>
             <th>小計</th>
             <th>制作ステータス</th>
-            <th>更新ボタン後で</th>
+            <th></th>
           </thead>
+          <% @sum = 0 %>
           <% @order_details.each do |order_detail| %>
           <tbody>
             <td><%= order_detail.item.name %></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          <% end %>  
+            <td><%= order_detail.price.to_s(:delimited) %></td>
+            <td><%= order_detail.amount.to_s(:delimited) %></td>
+            <td><%= order_detail.subtotal.to_s(:delimited) %></td>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail),method: :patch do |f| %> 
+            <td> <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, { class: "custom-select w-100"}%></td>
+            <td> <%= f.submit "更新",class:"btn btn-success" %></td>
+            <% end %>
+            <% @sum += order_detail.subtotal %>
+          <% end %>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr>
+              <th>商品合計</th>
+              <td><%= @sum.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <th>送料</th>
+              <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <th>請求金額</th>
+              <td><%= @order.total_payment.to_s(:delimited) %>円</td>
+            </tr>
           </tbody>
         
           

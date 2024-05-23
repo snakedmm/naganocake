@@ -1,1 +1,31 @@
-<h1>管理者のtopページ兼注文詳細</h1>
+<div class="container">
+<h3 class="col-lg-4 my-4" , style="background-color:#d7d7d7">注文履歴一覧</h3>
+  <div class="row">
+    <div class="col  m-5">
+      <table class="table table-hover">
+       <thead>
+          <tr>
+            <th>購入履歴</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td>
+              <%= link_to admin_order_path(order) do %>
+              <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+              <% end %>
+              </td>
+            <td><%= order.customer.last_name %>&nbsp;<%= order.customer.first_name %></td>
+            <td><%= order.order_details.sum(:amount) %></td>
+            <td><%= order.status_i18n  %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
