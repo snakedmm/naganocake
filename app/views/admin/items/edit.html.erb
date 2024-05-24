@@ -1,0 +1,66 @@
+<div class="container">
+ <div class="row">
+    <h2 class="px-4 my-4", style="background-color: #FFDBC9;">商品編集</h2>
+  </div>
+ <div class="row">
+    <div class="col d-flex align-items-center justify-content-center m-5">
+    <%= form_with model:@item, url: admin_item_path(@item),　method: :patch do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <th><%= f.label:image, '商品画像' %></th>
+            <td>
+              <div class="form-group">
+               <%= f.file_field :image %>
+              </div>
+            </td>
+          <tr>
+            <th><%= f.label :name, '商品名' %></th>
+            <td>
+              <div class="form-group">
+               <%= f.text_field :name %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :introduction,'商品説明' %></th>
+            <td>
+              <div class="form-group">
+              <%= f.text_area :introduction, placeholder:"ここに説明文を記述します", class:"form-control" %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :genre_id ,'ジャンル' %></th>
+            <td>
+              <div class="form-group">
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: "--選択してください--"}, { class: "custom-select w-100"}%>
+      　       </div>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :price ,'税抜価格' %></th>
+            <td>
+              <div class="form-group">
+              <%= f.number_field :price %>円
+      　       </div>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :is_active ,'販売ステータス' %></th>
+            <td>
+              <div class="form-group">
+              <%= f.radio_button :is_active, true %>販売中
+              <%= f.radio_button :is_active, false %>販売停止
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="form-group">
+        <%= f.submit '変更を保存',class:"btn btn-success"%>
+        </div>
+        <% end %> 
+    </div>
+  </div>
+</div>

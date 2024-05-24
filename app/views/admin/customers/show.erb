@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <h2 class="px-4 my-4", style="background-color: #FFDBC9;"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>会員ID</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.id %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>氏名</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.last_name %> <%= @customer.first_name %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>カナ</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>郵便番号</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.post_code %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>住所</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.address %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>電話番号</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.phone_number %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>メールアドレス</p>
+    </div>
+    <div class="col-3">
+      <%= @customer.email %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-size: 23px;">
+    <div class="col-3">
+      <p>会員ステータス</p>
+    </div>
+    <div class="col-3">
+      <% if @customer.is_active %>
+       <strong class="text-success">有効</strong>
+      <% else %>
+       <strong class="text-muted">退会</strong>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row mt-3 mb-5">
+    <div class="col-3"></div>
+    <%= link_to "編集する", edit_admin_customer_path(@customer), class:"btn btn-success mr-5" %>
+    <%= link_to "注文履歴一覧を見る",admin_path, class:"btn btn-primary ml-5" %>
+  </div>
+</div>

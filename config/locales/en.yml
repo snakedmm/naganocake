@@ -31,3 +31,52 @@
 
 en:
   hello: "Hello world"
+  
+  activerecord:
+    attributes:
+      order_detail:
+        making_status:
+          unprovable: "Unprovable"
+          awaiting_production: "Awaiting production"
+          in_production: "In production"
+          production_completed: "Production completed"
+
+ja:
+  enums:
+    order:
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+    order:
+      status:
+        unprovable: "製作不可"
+        awaiting_production: "製作待ち"
+        in_production: "製作中"
+        production_completed: "製作完了"
+    order_detail:
+      making_status:
+        unprovable: "製作不可"
+        awaiting_production: "製作待ち"
+        in_production: "製作中"
+        production_completed: "製作完了"
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      order:
+        status:
+          unprovable: "製作不可"
+          awaiting_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"
+      order_detail:
+        making_status:
+          unprovable: "製作不可"
+          awaiting_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"
