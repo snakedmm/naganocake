@@ -1,23 +1,29 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2 my-4">
+    <div class="col-2 my-4">
       <%= render 'public/genre_searches/genre' %>
     </div>
-    <div class="col-md-10">
-      <h3 class="col-lg-4 my-4" , style="background-color:#d7d7d7">商品一覧(全<%= Item.active_items_count %>件)</h3>
+    <div class="col-10">
+      <h2 class="col-4 my-4" , style="background-color:#FFDBC9">商品一覧(全<%= Item.active_items_count %>件)</h2>
       <div class="row row-cols-4">
         <% @items.each do |item| %>
         <div class="col">
           <%= link_to item_path(item) do %>
-            <%= image_tag item.image, size: "200x150" %><br>
+            <%= image_tag item.image, size: "350x270" %><br>
           <% end %>
-          <strong>
-          <%= item.name %><br>
-          ￥<%= item.add_tax_price.to_s(:delimited) %>
-          </strong>
+          <div class="mb-3">
+            <strong>
+            <%= item.name %><br>
+            ￥<%= item.add_tax_price.to_s(:delimited) %>
+            </strong>
+          </div>
         </div>
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"></div>
   </div>
 </div>
