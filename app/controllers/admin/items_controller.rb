@@ -20,7 +20,7 @@ class Admin::ItemsController < ApplicationController
   end
   
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
   
   def edit
@@ -34,10 +34,6 @@ class Admin::ItemsController < ApplicationController
     else
       render:edit
     end
-  end
-  
-  def index
-    @items = Item.all
   end
   
   private

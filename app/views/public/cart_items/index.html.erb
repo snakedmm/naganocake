@@ -48,7 +48,7 @@
     <div class="row">
   <% if @cart_items.empty? %>
     <!-- カートアイテムが空の場合の処理 -->
-    <p>カートに商品がありません。</p>
+    <h4 class="col-auto mx-auto mt-5">カートに商品がありません。</h4>
   <% else %>
     <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success col-auto mx-auto mt-5 btn-lg" %>
   <% end %>

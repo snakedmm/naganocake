@@ -28,7 +28,13 @@
             </td>
           </tr>
           <% end %>
+          <%= paginate @customers %>
         </tbody>
       </table>
     </div>
+    <div class="row">
+    <div class="col"></div>
+      <%= paginate @customers %>
+    <div class="col"></div>
+  </div>
 </div>
