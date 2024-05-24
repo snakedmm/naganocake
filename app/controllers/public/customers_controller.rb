@@ -23,7 +23,7 @@ class Public::CustomersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to customers_my_page_path(@customer)
     else
-      render :edit
+      redirect_to request.referer
     end
   end
   
