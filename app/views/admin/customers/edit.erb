@@ -1,56 +1,103 @@
-<h1>顧客編集画面</h1>
-
-<%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
-
-  <div class="field">
-    <%= f.label :会員ID %>
-    <%= @customer.id %>
-  
-  <div class="field">
-    <%= f.label :名前 %>
-    <%= f.text_field :last_name, autofocus: true, placeholder: "令和", autocomplete: "last_name" %>
-    <%= f.text_field :first_name, autofocus: true, placeholder: "道子", autocomplete: "first_name" %>
+<div class="container">
+  <div class="row">
+    <h2 class="my-4 px-4", style="background-color: #FFDBC9;">顧客編集画面</h2>
   </div>
     
-  <div class="field">
-    <%= f.label :フリガナ %>
-    <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ", autocomplete: "last_name_kana" %>
-    <%= f.text_field :first_name_kana, autofocus: true, placeholder: "ミチコ", autocomplete: "first_name_kana" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :"郵便番号(ハイフンなし)" %>
-    <%= f.text_field :post_code, autofocus: true, placeholder: "0000000", autocomplete: "post_code" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :住所 %>
-    <%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address", size: "40" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :"電話番号(ハイフンなし)" %>
-    <%= f.text_field :phone_number, autofocus: true, placeholder: "0000000000", autocomplete: "phone_number" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email" %>
-  </div>
-  
-  <div>
-  <%= f.label :is_active, '会員ステータス' %>
-  <div>
-    <div>
-      <%= f.radio_button :is_active, true, checked: @customer.is_active == true %>
-      <%= f.label :is_active, '有効' %>
-    </div>
-    <div>
-      <%= f.radio_button :is_active, false, checked: @customer.is_active == false %>
-      <%= f.label :is_active, '退会済み' %>
-    </div>
-  </div>
+    <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+    
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :会員id %>
+        </div>
+        <div class="col-3">
+          <%= @customer.id %>
+        </div>
+      </div>
+      
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :氏名 %>
+        </div>
+        <div class="col-3">
+          <%= f.text_field :last_name, autofocus: true, placeholder: "令和", autocomplete: "last_name" %>
+        </div>
+        <div class="col-1">
+          <%= f.text_field :first_name, autofocus: true, placeholder: "道子", autocomplete: "first_name" %>
+        </div>
+      </div>
+    
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :フリガナ %>
+        </div>
+        <div class="col-3">
+          <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ", autocomplete: "last_name_kana" %>
+        </div>
+        <div class="col-1">
+          <%= f.text_field :first_name_kana, autofocus: true, placeholder: "ミチコ", autocomplete: "first_name_kana" %>
+        </div>
+      </div>
+      
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :"郵便番号(ハイフンなし)" %>
+        </div>
+        <div class="col-3">
+          <%= f.text_field :post_code, autofocus: true, placeholder: "0000000", autocomplete: "post_code" %>
+        </div>
+      </div>
+      
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :住所 %>
+        </div>
+        <div class="col-3">
+          <%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address", size: "40" %>
+        </div>
+      </div>
+      
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :"電話番号(ハイフンなし)" %>
+        </div>
+        <div class="col-3">
+          <%= f.text_field :phone_number, autofocus: true, placeholder: "0000000000", autocomplete: "phone_number" %>
+        </div>
+      </div>
+      
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :メールアドレス %>
+        </div>
+        <div class="col-3">
+          <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", size: "40" %>
+        </div>
+      </div>
+      
+      <div class="row col-form-label-lg">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= f.label :is_active, '会員ステータス' %>
+        </div>
+        <div class="col-3">
+        <%= f.radio_button :is_active, true, checked: @customer.is_active == true %>
+        <%= f.label :is_active, '有効' %>
+        <%= f.radio_button :is_active, false, checked: @customer.is_active == false %>
+        <%= f.label :is_active, '退会' %>
+        </div>
+      </div>
+    	
+    	<div class="row mt-3 mb-5">
+        <div class="col"></div>
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+        <div class="col"></div>
+    　</div>
+    <% end %>
 </div>
-	
-	<%= f.submit '編集内容を保存' %>
-<% end %>

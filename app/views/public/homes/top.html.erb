@@ -1,31 +1,86 @@
-<table class="table">
-    <th scope="col">ジャンル検索</th>
-    <tr><td class="block">ケーキ</td></tr>
-    <tr><td class="block">焼き菓子</td></tr>
-    <tr><td class="block">プリン</td></tr>
-    <tr><td class="block">キャンディ</td></tr>
-</table>
-
-<div class="card bg-dark text-white" style="width: 300px; height: auto;">
-  <%= image_tag("cake_image.jpg", class: "card-img w-100", alt: "icon image") %>
-  <div class="card-img-overlay d-flex">
-    <div class="my-auto">
-      <p class="card-text">
-        ようこそ、ながのCAKEへ！
-        このサイトは、ケーキ販売のECサイトになります。
-        会員でない方も商品の閲覧はできますが、
-        購入には会員登録が必要になります。
-      </p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" style="font-size: 20px;">
+    <%= render 'public/genre_searches/genre' %>
+    </div>
+    
+    <div class="col-7 pt-5" style="margin-left: 75px;">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+    
+          <div class="swiper-slide">
+            <%= image_tag asset_path('top1_image.jpg'), alt: '' %>
+          </div>
+    
+          <div class="swiper-slide">
+            <%= image_tag asset_path('top2_image.jpg'), alt: '' %>
+          </div>
+    
+          <div class="swiper-slide">
+            <%= image_tag asset_path('top3_image.jpg'), alt: '' %>
+          </div>
+        </div>
+        <!-- ページネーション -->
+        <div class="swiper-pagination"></div>
+        <!-- 前後の矢印 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+  
+      <script>
+        const swiper = new Swiper(".swiper", {
+          loop: true, // ループ
+          speed: 1500, // 少しゆっくり(デフォルトは300)
+          effect: 'fade', // フェード
+          autoplay: { // 自動再生
+            delay: 1000, // 2秒後に次のスライド
+            disableOnInteraction: false, // 矢印をクリックしても自動再生を止めない
+          },
+          // ページネーション
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          // 前後の矢印
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          });
+      </script>
     </div>
   </div>
 </div>
 
-<table>
-  <% @items.each do |item| %>
-  <div class="product">
-    <%= image_tag item.image, size: "250x200" %>
-    <p><%= item.name %></p>
-    <p>¥<%= item.price %></p>
+<div class="container text-center">
+  <div class="row ">
+    <h2 class="col-auto mx-auto my-5">
+      ようこそ、長野cakeへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。<br>
+    </h2>
   </div>
-  <% end %>
-</table>
+</div>
+
+<div class="container", style="font-size: 20px;">
+  <div class="row">
+    <h1 class="col-auto mx-auto my-4", style="background-color: #FFDBC9;">～新着商品～</h1>
+  </div>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="mr-5">
+      <%= link_to item_path(item) do %>
+      <%= image_tag item.image, size: "235x150" %>
+      <p><%= item.name %></p>
+      <% end %>
+      <p>¥<%= item.price %></p>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-9 pb-5"></div>
+    <%= link_to 'すべての商品を見る>', items_path, class: '' %>
+  </div>
+</div>
+

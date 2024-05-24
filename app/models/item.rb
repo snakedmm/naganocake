@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
-  
+
   has_one_attached :image
+  enum status: { on_sale: 0, off_sale: 1 }
   
   has_many :cart_items, dependent: :destroy
   has_many :customers,through: :cart_items , dependent: :destroy
@@ -15,7 +16,5 @@ class Item < ApplicationRecord
   
   def self.active_items_count
     where(is_active: true).count
-
   end
-  
 end

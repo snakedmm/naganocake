@@ -10,6 +10,7 @@ class CartItem < ApplicationRecord
     cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
-
+  validates :item_id, presence: true
+  validates :amount, presence: true
 end
 

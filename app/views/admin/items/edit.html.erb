@@ -1,5 +1,7 @@
 <div class="container">
- <h3 class="col-lg-2 my-4" , style="background-color:#d7d7d7">商品編集</h3>
+ <div class="row">
+    <h2 class="px-4 my-4", style="background-color: #FFDBC9;">商品編集</h2>
+  </div>
  <div class="row">
     <div class="col d-flex align-items-center justify-content-center m-5">
     <%= form_with model:@item, url: admin_item_path(@item),　method: :patch do |f| %>

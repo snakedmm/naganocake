@@ -14,14 +14,10 @@ class Public::CartItemsController < ApplicationController
       existing_cart_item.save
       redirect_to cart_items_path
     else
-      if @cart_item.save
-        redirect_to cart_items_path
-      else
-        render :new
-      end
+      @cart_item.save
+      redirect_to cart_items_path
     end
   end
-  
   def update
     cart_item = CartItem.find(params[:id])
     cart_item.update(cart_item_params)
@@ -40,6 +36,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   private
+  
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
   end

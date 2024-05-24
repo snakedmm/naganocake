@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @genre = Genre.new
@@ -10,8 +11,7 @@ class Admin::GenresController < ApplicationController
     if @genre.save
       redirect_to admin_genres_path
     else
-      flash.now[:alert] = "保存に失敗しました"
-      render :index
+      redirect_to request.referer,notice: '保存に失敗しました'
     end
   end
   

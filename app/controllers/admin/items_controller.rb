@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
   
   def new
     @item = Item.new
@@ -33,6 +34,10 @@ class Admin::ItemsController < ApplicationController
     else
       render:edit
     end
+  end
+  
+  def index
+    @items = Item.all
   end
   
   private
